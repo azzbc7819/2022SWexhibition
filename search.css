@@ -1,0 +1,245 @@
+/*검색 페이지 CSS*/
+
+body {
+    /*font-family: Noto Sans KR;*/
+    font-size: 10px;
+    width: 100%;
+    background: linear-gradient(90deg, #6A85B6 0%, #BAC8E0 100%);
+
+}
+
+.title_main {
+    margin: 0;
+    width: 100%;
+    height: 20rem;
+}
+
+.title_bar {
+    color:white;
+}
+
+#logo {
+    font-size:0.8rem;
+    color:white;
+    background: none;
+    border:0;
+    margin: 1rem;
+    float: left;
+}
+
+#login {
+    font-size:0.8rem;
+    color:white;
+    background: none;
+    border:0;
+    margin: 1rem 2rem;
+    float: right;
+}
+
+#title_txt01 {
+    width:100%;
+    margin: 6rem 0 0 0;
+
+    text-align: center;
+    font-size: 1rem;
+    color:white;
+    
+}
+
+#title_txt02 {
+    width:100%;
+    margin: 0 0 0 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:white;
+    text-align: center;
+
+}
+
+
+/*main contents*/
+main {
+    margin: 0 10%;
+}
+
+/*주제 목록 버튼*/
+.ChoicebtnBlock {
+    padding: 0 0 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+.ChoicebtnBlock > button{
+    font-weight: bold;
+    margin: 1rem 0.5rem;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background: #ffffff;
+    border: 0px;
+    /*border-style: solid;*/
+    /*color:white;*/
+    /*border-color: white;*/
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
+
+
+}
+.ChoicebtnBlock > button:hover{
+    background: rgb(226, 207, 158);
+    color:white;
+    scale: 120%;
+}
+
+
+/*검색 바*/
+.searchBlock {
+    margin: 2rem 0;
+    background-color: white;
+    border-radius: 30px;
+    width: 100%;
+    height: 3rem;
+}
+.searchBlock:hover {
+    scale: 110%;
+}
+#searchVal {
+    margin: 0.25rem 0 0.25rem 1.5rem;
+    width: 80%;
+    height: 2.5rem;
+    border:0;
+    background-color: rgba(255, 255, 255, 0);
+    float: left;
+}
+#searchVal:focus{
+    outline: none;
+}
+
+#btnSearch {
+    margin: 0.75rem 1rem 1rem 0;
+    width: 1.5rem;
+    float: right;
+}
+
+/*지도*/
+.mapBlock {
+    padding: 1rem 0;
+}
+
+/*지도 필터*/
+.arrayBlcok {
+    margin: 1rem 0;
+    width: 100%;
+}
+#arrayhsp { /*필터 셀렉터*/
+    height: 1.5rem;
+    width: 10rem;
+    margin: 0 auto;
+    float: left;
+    text-align: center;
+    border: 0;
+    border-radius: 10px;
+}
+.arrayBlcok form input{ /*현재위치 버튼*/
+    height: 1.5rem;
+    width: 8rem;
+    text-align: center;
+    float: right;
+    border: 0;
+    border-radius: 10px;
+
+}
+
+
+/*결과 리스트*/
+.hsplistBlock {
+    /*background-color: rgb(212, 146, 146);*/
+    margin: 3rem 0;
+    padding: 2rem 0;
+}
+.hsplistBlock form ul {
+
+}
+
+.hsplistBlock form ul li {
+    width: 10rem;
+    height: max-content;
+    margin: 0 2rem 2rem auto;
+    padding: 1rem 1rem;
+    background-color: white;
+    list-style:none;
+    border-radius: 15px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*display:table;
+    margin: 1rem auto;*/
+}
+.hsplistBlock form ul li div{
+    flex-wrap: wrap;
+}
+
+.hsplistBlock form ul li div *{
+    display:table;
+    margin: auto auto;
+}
+
+.hsplistBlock form ul li div input[type=image]{
+    float: left;
+    width: 5rem;
+    height: 5rem;
+}
+#hspAdd {
+    float: left;
+}
+.hsplistBlock form ul li div input[type=button]{
+    float: right;
+
+}
+
+.hsplistBlock form span {
+    width: 100%;
+    /*display: flex;
+    align-items: center;*/
+}
+.hsplistBlock form span input {
+    /*align-items: center;*/
+    margin: 2rem auto 0;
+    width: 10rem;
+    height: 2.5rem;
+    text-align: center;
+    background: white;
+    border: 0;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+
+.hsplistBlock {
+    display: flex;
+
+}
+.hsplistBlock li{
+    background-color: #BAC8E0;
+    flex-direction: column;
+    border-radius: 10px;
+
+}
+
+*/
+
+
+
+/*footer*/
+footer {
+    width: 100%;
+    height: 15rem;
+    background-color: rgba(0, 0, 0, 0.205);
+
+    margin-top: 15rem;
+}
