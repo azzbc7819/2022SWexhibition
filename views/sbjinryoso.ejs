@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <th>업체명</th>
+        <th>주소</th>
+        <th>전화번호</th>
+        <th>평일운영시간</th>
+        <th>토요일운영시간</th>
+        <th>일요일운영시간</th>
+        <% for(var i = 0; i<model.length; i++){ %>
+            <tr>
+                <td><%= model[i].선별진료소명 %></td>
+                <td><%= model[i].주소 %></td>
+                <td><%= model[i].전화번호 %></td>
+                <td><%= model[i].평일운영시간 %></td>
+                <td><%= model[i].토요일운영시간 %></td>
+                <td><%= model[i].일요일및공휴일운영시간 %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>
