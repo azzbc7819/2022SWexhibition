@@ -7,63 +7,9 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script type="text/javascript"
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=usxa85bak8"></script>
+    <link href="search.css" type="text/css" rel="stylesheet">
     <style>
-        body {
-            font-family: Noto Sans KR;
-            width: 100%;
-            height: 100%;
-        }
-        #title {
-            width: 100%;
-            text-align: left;
-        }
-        #title_bg {
-            width: match-parent;
-            height: 20em;
-            background: linear-gradient(90deg, #6A85B6 0%, #BAC8E0 100%);
-        }
-        #title_txt01 {
-            margin: 3rem 0 0 2rem;
-            font-size: 1rem;
-            color: white;
-        }
-        #title_txt02 {
-            margin: 0 0 0 2rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        #title_bar {
-        }
-        #logo {
-            margin: 0.5rem;
-            color: white;
-            float: left;
-        }
-        #login {
-            margin: 0.5rem 1rem;
-            color: white;
-            float: right;
-        }
-        .arrayblock {
-            width: match-parent;
-        }
-        #arrayhsp {
-            margin: 0.5rem;
-            float: left;
-        }
-        #btnSearch {
-            margin: 0.5rem 1rem;
-            float: right;
-        }
-        .hsplistBlock {
-            display: flex;
-        }
-        .hsplistBlock li{
-            background-color: #BAC8E0;
-            flex-direction: column;
-            border-radius: 10px;
-        }
+
     </style>
     <title> 방구석 힐러 - 검색 페이지</title>
 </head>
@@ -75,7 +21,8 @@
             <div id="title_bg">
                 <div class="title_bar">
                     <form>
-                        <span><input id="logo" name="logo" type="button" value="사이트 로고" /></span>
+                        <!--onClick 추가-->
+                        <span><input id="logo" name="logo" type="button" value="사이트 로고" onClick="location.href='mainPG.html'"/></span>
                         <span><input id="login" name="login" type="button" value="login" /></span>
                     </form>
                     <br><br>
@@ -91,28 +38,31 @@
     <main>
         <section>
             <div class="ChoicebtnBlock">
-                <span><input name="hospital" type="button" value="병원" /></span>
-                <span><input name="pharmacy" type="button" value="약국" /></span>
-                <span><input name="station" type="button" value="선별진료소" /></span>
-                <span><input name="isolation" type="button" value="격리시설" /></span>
+                <!--버튼으로 변경-->
+                <button type="button" id="hospital" onclick="location.href='search'">병원</button>
+                <button type="button" id="pharmacy" onclick="location.href='search'">약국</button>
+                <button type="button" id="station" onclick="location.href='search'">선별진료소</button>
+                <button type="button" id="isolation" onclick="location.href='search'">격리시설</button>
             </div>
         </section>
 
-        <br><br>
+        <!--<br><br>
         <hr>
-        <br>
+        <br>-->
 
         <section>
             <div class="searchBlock">
                 <form>
-                    <input name="search" type="text" placeholder="병원 명을 입력해주세요 ">
-                    <input name="btnSearch" type="button" value="검색">
+                    <input id="searchVal" name="search" type="text" placeholder="이름을 입력해주세요 ">
+                    <!--이미지 소스 삽입  + 앵커 삽입-->
+                    <a href="#map"><input id="btnSearch" name="btnSearch" type="image" src="searchICON.png" alt="검색"></a>
                 </form>
             </div>
 
+            <!--
             <br>
             <hr>
-
+            -->
             <div class="mapBlock">
                 <div id="map" style="width:100%;height:400px;"></div>
                 <script>
@@ -124,7 +74,9 @@
                 </script>
             </div>
 
+            <!--
             <br><hr><br>
+            -->
 
             <div class="arrayBlcok">
                 <select name="arrayhsp" id="arrayhsp">
@@ -138,8 +90,10 @@
                 <form>
                     <span><input name="location" type="button" value="현재 위치 "></span>
                 </form>
+                <!--
                 <br>
                 <hr>
+                -->
             </div>
 
             <div class="hsplistBlock">
@@ -147,9 +101,10 @@
                     <ul id="hsplist">
                         <% for(var i = 0; i<model.length; i++){ %>
                         <li>
-                            <div>
+
+                            <div id="hsp1">
                                 <!--<input type="image" name="병원사진" alt="병원이름 + 사진" src="">-->
-                                <span id="hspName"><%= modeli].병원명 %></span>
+                                <span id="hspName"><%= model[i].병원명 %></span>
                                 <span id="hspAdd"><%= model[i].주소 %></span>
                                 <span id="hspTel"><%= model[i].전화번호 %></span>
                                 <span id="hspTime1"><%= model[i].평일운영시간 %></span>
@@ -159,6 +114,26 @@
                             </div>
                         </li>
                         <% } %>
+                        <!--<li>
+                            <div id="hsp2">
+                                <input type="image" name="병원사진" alt="병원이름 + 사진" src="">
+                                <span id="hspName">병원 명2</span>
+                                <span id="hspAdd">병원 주소2</span>
+                                <span id="hspTel">033-0000-0000</span>
+                                <span id="hspTime">운영시간 ~18:00 [일요일 휴무]</span>
+                                <input type="button" id="btnRes" value="예약 하기">
+                            </div>
+                        </li>
+                        <li>
+                            <div id="hsp2">
+                                <input type="image" name="병원사진" alt="병원이름 + 사진" src="">
+                                <span id="hspName">병원 명2</span>
+                                <span id="hspAdd">병원 주소2</span>
+                                <span id="hspTel">033-0000-0000</span>
+                                <span id="hspTime">운영시간 ~18:00 [일요일 휴무]</span>
+                                <input type="button" id="btnRes" value="예약 하기">
+                            </div>
+                        </li>-->
                     </ul>
                     <span><input name="add" type="button" value="더보기"></span>
                 </form>
@@ -170,5 +145,4 @@
         <!--사이트 정보-->
     </footer>
 </body>
-
 </html>
