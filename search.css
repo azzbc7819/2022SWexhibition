@@ -1,11 +1,12 @@
 /*검색 페이지 CSS*/
 
 body {
-    /*font-family: Noto Sans KR;*/
     font-size: 10px;
     width: 100%;
     background: linear-gradient(90deg, #6A85B6 0%, #BAC8E0 100%);
 
+    margin: 0;
+    padding: 0;
 }
 
 .title_main {
@@ -43,7 +44,7 @@ body {
     text-align: center;
     font-size: 1rem;
     color:white;
-    
+
 }
 
 #title_txt02 {
@@ -59,7 +60,7 @@ body {
 
 /*main contents*/
 main {
-    margin: 0 10%;
+    margin: 0 15%;
 }
 
 /*주제 목록 버튼*/
@@ -71,7 +72,7 @@ main {
 .ChoicebtnBlock > button{
     font-weight: bold;
     margin: 1rem 0.5rem;
-    width: 8rem;
+    width: 10rem;
     height: 3rem;
     border-radius: 1.5rem;
     background: #ffffff;
@@ -81,14 +82,17 @@ main {
     /*border-color: white;*/
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
 
-
 }
 .ChoicebtnBlock > button:hover{
     background: rgb(226, 207, 158);
     color:white;
-    scale: 120%;
+    scale: 110%;
 }
 
+/*지도*/
+.mapBlock {
+    padding: 1rem 0;
+}
 
 /*검색 바*/
 .searchBlock {
@@ -97,13 +101,17 @@ main {
     border-radius: 30px;
     width: 100%;
     height: 3rem;
+
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
+
 }
 .searchBlock:hover {
-    scale: 110%;
+    scale: 105%;
+    /*background-color: rgba(0, 0, 0, 0.11);*/
 }
 #searchVal {
     margin: 0.25rem 0 0.25rem 1.5rem;
-    width: 80%;
+    width: 70%;
     height: 2.5rem;
     border:0;
     background-color: rgba(255, 255, 255, 0);
@@ -114,124 +122,216 @@ main {
 }
 
 #btnSearch {
-    margin: 0.75rem 1rem 1rem 0;
-    width: 1.5rem;
+    margin: 0.85rem 1rem 1rem 0;
+    width: 1.2rem;
     float: right;
-}
-
-/*지도*/
-.mapBlock {
-    padding: 1rem 0;
 }
 
 /*지도 필터*/
 .arrayBlcok {
     margin: 1rem 0;
     width: 100%;
+
 }
 #arrayhsp { /*필터 셀렉터*/
-    height: 1.5rem;
-    width: 10rem;
+    height: 2rem;
+    width: 8rem;
     margin: 0 auto;
     float: left;
     text-align: center;
     border: 0;
-    border-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
+
 }
 .arrayBlcok form input{ /*현재위치 버튼*/
-    height: 1.5rem;
+    height: 2rem;
     width: 8rem;
     text-align: center;
     float: right;
     border: 0;
-    border-radius: 10px;
+    border-radius: 30px;
+
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
 
 }
 
 
-/*결과 리스트*/
-.hsplistBlock {
-    /*background-color: rgb(212, 146, 146);*/
-    margin: 3rem 0;
-    padding: 2rem 0;
-}
-.hsplistBlock form ul {
-
+/*검색 결과 리스트*/
+.resBlock {
+    margin: 0;
+    padding: 0;
 }
 
-.hsplistBlock form ul li {
-    width: 10rem;
-    height: max-content;
-    margin: 0 2rem 2rem auto;
-    padding: 1rem 1rem;
-    background-color: white;
-    list-style:none;
+/*해상도 1100px이상일 경우*/
+@media(min-width:1100px) {
+    #reslist {
+        /*background-color: rgb(212, 146, 146);*/
+        margin: 4rem -5% 3rem 1rem;
+        padding: 2rem 0;
+    }
+
+    .resBlock form ul li {
+        width: 43%;
+        height: 7rem;
+        margin: 0 2% 2rem 0;
+        padding: 1rem 1rem;
+        background-color: white;
+        list-style:none;
+        border-radius: 15px;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
+
+        /*display:table;
+        margin: 1rem auto;*/
+    }
+}
+/*해상도 1100px이하일 경우*/
+@media (max-width:1100px) {
+    #reslist {
+        /*background-color: rgb(212, 146, 146);*/
+        margin: 4rem 0 3rem 0;
+        padding: 2rem 0;
+    }
+
+    .resBlock form ul li {
+        width: 92.5%;
+        height: 5.5rem;
+        margin: 0 0 2rem 0;
+        padding: 1rem 1rem;
+        background-color: white;
+        list-style:none;
+        border-radius: 15px;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
+        /*display:table;
+        margin: 1rem auto;*/
+    }
+}
+
+/*병원 이미지*/
+#img {
+    float: left;
+    background-color: #93aad4;
+    margin-right: 1rem;
     border-radius: 15px;
+}
+/*해상도 1100px이상일 경우*/
+@media(min-width:1100px) {
+    #img {
+        width: 7rem;
+        height: 7rem;
+
+    }
+}
+/*해상도 1100px이하일 경우*/
+@media (max-width:1100px) {
+    #img {
+        width: 6rem;
+        height: 5.5rem;
+    }
+}
+
+.inform {
+    height: 100%;
     float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /*display:table;
-    margin: 1rem auto;*/
 }
-.hsplistBlock form ul li div{
-    flex-wrap: wrap;
+#name {
+    font-weight: bold;
+    font-size: 12px;
 }
+#tel {
 
-.hsplistBlock form ul li div *{
-    display:table;
-    margin: auto auto;
+}
+#address {
+    padding: 5px 0;
+
 }
 
-.hsplistBlock form ul li div input[type=image]{
-    float: left;
+.time {
+    margin : 1rem 0;
+}
+
+#btnReserve {
     width: 5rem;
-    height: 5rem;
-}
-#hspAdd {
-    float: left;
-}
-.hsplistBlock form ul li div input[type=button]{
-    float: right;
-
-}
-
-.hsplistBlock form span {
-    width: 100%;
-    /*display: flex;
-    align-items: center;*/
-}
-.hsplistBlock form span input {
-    /*align-items: center;*/
-    margin: 2rem auto 0;
-    width: 10rem;
-    height: 2.5rem;
-    text-align: center;
-    background: white;
+    height: 1.5rem;
+    border-radius: 30px;
     border: 0;
-    border-radius: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #93aad4;
+    color: white;
+}
+/*해상도 1100px이상일 경우*/
+@media(min-width:1100px) {
+    #btnReserve {
+        margin-top: 6rem;
+    }
+}
+/*해상도 1100px이하일 경우*/
+@media (max-width:1100px) {
+    #btnReserve {
+        margin-top: 4rem;
+        position: absolute;
+        right:  20%;
+    }
+}
+#btnReserve:hover {
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.112);
 }
 
 
+/*팝업 창을 위한 css 부분*/
 /*
-
-.hsplistBlock {
-    display: flex;
-
-}
-.hsplistBlock li{
-    background-color: #BAC8E0;
-    flex-direction: column;
+.popup {
+    width: 500px;
+    height: 500px;
+    box-shadow: 2px 2px 10px gray;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    text-align: right;
+    padding : 20px;
 
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+
+    transition: all 0.5s; /*0.5초동안 애니메이션 효과*/
+/*
+    z-index: 5;
+}/*
+.popup a {
+    color:gray;
+    text-decoration: none;
+    font-size: 1rem;
 }
+.popup:target{   /*popup이 타겟이 될 때 보여지도록*/
+    /*opacity: 1;
+}
+.popup:target + .dim {   /*popup이 타겟이 왔고 형제인 div(dim)를 선택했을때*/
+  /*  opacity: 1;
+    z-index: 1;
+}
+.dim {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom : 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6); /*팝업 뒤가 클릭되지 않도록 까맣게 배경을 칠함*/
+ /*   opacity: 0; /*투명도가 0일 뿐 그 뒤의 요소가 클릭되지 않음*/
+ /*   z-index: -1; /*클릭되도록 위치를 옮김*/
+/*}*/
 
-*/
 
 
 
@@ -239,7 +339,17 @@ main {
 footer {
     width: 100%;
     height: 15rem;
-    background-color: rgba(0, 0, 0, 0.205);
-
-    margin-top: 15rem;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+/*해상도 1100px이상일 경우*/
+@media(min-width: 1100px) {
+    footer {
+        margin-top: 40rem;
+    }
+}
+/*해상도 1100px이하일 경우*/
+@media (max-width: 1100px) {
+    footer {
+        margin-top: 5rem;
+    }
 }
