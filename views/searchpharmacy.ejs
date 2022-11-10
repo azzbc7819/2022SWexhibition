@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=usxa85bak8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <link href="search.css" type="text/css" rel="stylesheet">
+
+    <title> 방구석 힐러 - 검색</title>
+</head>
+
+<body>
+    <!--사이트 명, 홈버튼, 로그인 페이지-->
+    <header>
+        <div class="title_main">
+            <div id="title_bg">
+                <div class="title_bar">
+                    <form>
+                        <!--onClick 추가-->
+                        <span><input id="logo" name="logo" type="button" value="사이트 로고"
+                                onClick="location.href='mainPG.html'" /></span>
+                        <span><input id="login" name="login" type="button" value="login" /></span>
+                    </form>
+                    <br><br>
+                </div>
+                <div id="title_txt01">재택치료를 위한</div>
+                <div id="title_txt02">위치정보 검색+</div>
+            </div>
+        </div>
+    </header>
+
+    <br>
+
+    <main>
+        <section>
+            <div class="ChoicebtnBlock">
+                <!--11-08 서영 : button id 변경-->
+                <button type="button" id="hospital" onclick="location.href='searchhospital'">병원</button>
+                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국</button>
+                <button type="button" id="pcrCenter" onclick="location.href='searchpcrCenter'">선별진료소</button>
+                <button type="button" id="isolation" onclick="location.href='searchisolation'">격리시설</button>
+            </div>
+        </section>
+
+        <section>
+            <!-- 네이버 지도 관련 자바 스크립트 파일 불러오기 -->
+            <script src="map.js"></script>
+
+            <div class="mapBlock">
+                <div id="map" style="width : 100%; height:300px;"></div>
+            </div>
+
+            <!--검색 바 위치 변경 : 지도 위 -> 지도 밑으로 -->
+            <div class="searchBlock">
+                <form>
+                    <input id="searchVal" name="search" type="text" placeholder="이름을 입력해주세요 ">
+
+                    <!--이미지 소스 삽입  + 앵커 삽입-->
+                    <a href="#map"><input id="btnSearch" name="btnSearch" type="image" src="searchICON.png"
+                            alt="검색"></a>
+
+                </form>
+            </div>
+
+
+            <div class="arrayBlcok">
+                <select name="arrayhsp" id="arrayhsp">
+                    <span>
+                        <option value="distance">가까운 순</option>
+                    </span>
+                    <span>
+                        <option value="related">관련도 순</option>
+                    </span>
+                </select>
+                <form>
+                    <!-- 버튼 아이디 삽입 2022 11 07 김유진 수정 -->
+                    <span><input id="b1" name="location" type="button" value="현재 위치 "></span>
+                </form>
+            </div>
+            <div class="resBlock">
+                <script>
+
+                    function savewg(hpName, wido, gyeongdo) {
+                        hp = hpName;
+                        wid = wido;
+                        gyd = gyeongdo;
+
+                        var location = new naver.maps.LatLng(wid, gyd); // 누른버튼의 위도 경도
+                        var map = new naver.maps.Map('map', { // 지도 띄우기
+                            center: new naver.maps.LatLng(wid, gyd),
+                            zoom: 17,
+                            zoomControl: true, //줌 컨트롤의 표시 여부
+                            zoomControlOptions: { //줌 컨트롤의 옵션
+                                position: naver.maps.Position.TOP_RIGHT
+                            }
+                        });
+
+                        var contentString = [
+                            '<div class="iw_inner">',
+                            '   <h3>' + hp + '</h3>',
+                            '</div>'
+                        ].join('');
+
+                        var infowindow = new naver.maps.InfoWindow({ // 정보창 띄위기
+                            content: contentString
+                        });
+
+
+                        var marker = new naver.maps.Marker({
+                            position: new naver.maps.LatLng(wid, gyd),
+                            map: map
+                        });
+
+                        infowindow.open(map, marker);
+
+                        naver.maps.Event.addListener(marker, "click", function (e) {
+                            if (infowindow.getMap()) {
+                                infowindow.close();
+                            } else {
+                                infowindow.open(map, marker);
+                            }
+                        })
+
+                    }
+
+
+                </script>
+<form>
+                    <ul id="reslist">
+                        <% for(var i = 0; i<model.length; i++){ %>
+                        <li id=<%=model[i].id %> onclick='savewg("<%= model[i].업체명%>",<%= model[i].위도 %>,<%= model[i].경도 %>)'>
+                            <div>
+                                <img id="img" name="사진" alt="사진" src="">
+                            </div>
+                            <div class="inform">
+                                <span id="name">
+                                    <%= model[i].업체명 %>
+                                </span>
+                                <span id="tel"> |
+                                    <%= model[i].전화번호 %>
+                                </span><br>
+                                <span id="address">
+                                    <%= model[i].주소 %>
+                                </span><br>
+                                <br>
+
+                                <span class="time">평일
+                                    <%= model[i].평일운영시간 %>
+                                </span><br>
+                                <span class="time">토요일
+                                    <%= model[i].토요일운영시간 %>
+                                </span><br>
+                                <span class="time">일요일
+                                    <%= model[i].일요일운영시간 %>
+                                </span>
+                            </div>
+
+                            <!--예약 버튼 클릭 시 예약 팝업창 뜨도록-->
+                            <a href="#pop1" class="btn"><input type="button" id="btnReserve" value="예약 하기"></a>
+
+                            <!--가려질 부분 / opacity : 0-->
+                            <div class="popup" id="pop1">
+                                <a href="#a">닫기</a>
+                            </div>
+                            <div class="dim">
+
+                            </div>
+                            <!--여기까지-->
+                        </li>
+                        <% } %>
+                    <!--<span><input name="add" type="button" value="더보기"></span>-->
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!--사이트 정보-->
+        <div id="bottomContents">
+            <span>이미지1</span>
+            <span>이미지2</span>
+            <span>이미지3</span>
+            사이트 정보 입력 예정
+        </div>
+    </footer>
+    </footer>
+</body>
+
+</html>
