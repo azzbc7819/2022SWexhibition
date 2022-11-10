@@ -30,7 +30,7 @@ app.get('/hi', function(요청, 응답){
 
 });
 
-app.get('/search', function(요청, 응답){
+app.get('/searchhospital', function(요청, 응답){
     //응답.sendFile(__dirname + '/search.html');
 
     var sql = `SELECT * from '병원';`;
@@ -40,9 +40,54 @@ app.get('/search', function(요청, 응답){
 
             //응답.render("hospital", {model: row});
         });
-        응답.render('search',{model: rows});
+        응답.render('searchhospital',{model: rows});
 
     });
+});
+
+app.get('/searchpharmacy', function(요청, 응답){
+    //응답.sendFile(__dirname + '/search.html');
+
+    var sql = `SELECT * from '약국';`;
+    db.all(sql, function(err, rows){
+        rows.forEach(function (row){
+            console.log(rows[0]);
+
+            //응답.render("hospital", {model: row});
+        });
+        응답.render('searchpharmacy',{model: rows});
+
+    });
+});
+
+app.get('/searchpcrCenter', function(요청, 응답){
+    //응답.sendFile(__dirname + '/search.html');
+
+    var sql = `SELECT * from '선별진료소';`;
+    db.all(sql, function(err, rows){
+        rows.forEach(function (row){
+            console.log(rows[0]);
+
+            //응답.render("hospital", {model: row});
+        });
+        응답.render('searchpcrCenter',{model: rows});
+
+    });
+});
+
+app.get('/searchisolation', function(요청, 응답){
+    //응답.sendFile(__dirname + '/search_isolation.html');
+    응답.render('searchisolation');
+    /*var sql = `SELECT * from '병원';`;
+    db.all(sql, function(err, rows){
+        rows.forEach(function (row){
+            console.log(rows[0]);
+
+            //응답.render("hospital", {model: row});
+        });
+        응답.render('searchisolation',{model: rows});
+
+    });*/
 });
 
 app.get('/api/hospitals', function(요청, 응답){
@@ -66,16 +111,18 @@ app.get('/api/hospitals', function(요청, 응답){
 
 app.get('/api/pharmacy', function(요청, 응답){
 
-    var sql = `SELECT * from '약국', '24시 편의점';`;
+    var sql = `SELECT * from '약국';`;
+
     db.all(sql, function(err, rows){
         rows.forEach(function (row){
-            //console.log(rows[0]);
+            //console.log(row);
 
-            //응답.render("hospital", {model: row});
+            //응답.render("pharmacy", {model: row});
         });
         응답.render('pharmacy',{model: rows});
 
     });
+
 });
 
 app.get('/api/sbjinryoso', function(요청, 응답){
