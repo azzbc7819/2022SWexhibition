@@ -60,17 +60,18 @@
         <br>-->
 
         <section>
+            <form action="">
             <!-- 네이버 지도 관련 자바 스크립트 파일 불러오기 -->
             <script src="map.js"></script>
 
             <div class="mapBlock">
                 <div id="map" style="width : 100%; height:300px;"></div>
             </div>
-
+            </form>
             <!--검색 바 위치 변경 : 지도 위 -> 지도 밑으로 -->
             <div class="searchBlock">
                 <!--submit , form 변경-->
-                <form action="" onsubmit="search()" method="get">
+                <form action="" method="get">
                     <input id="searchVal" name="search" type="text" placeholder="이름을 입력해주세요 ">
 
                     <!--이미지 소스 삽입  + 앵커 삽입-->
@@ -95,9 +96,11 @@
                         <option value="related">관련도 순</option>
                     </span>
                 </select>
+
                 <form>
                     <span><input id="b1" name="location" type="button" value="현재 위치 "></span>
                 </form>
+
                 <!--
                 <br>
                 <hr>
@@ -112,15 +115,7 @@
                         wid = wido;
                         gyd = gyeongdo;
 
-                        var location = new naver.maps.LatLng(wid, gyd); // 누른버튼의 위도 경도
-                        var map = new naver.maps.Map('map', { // 지도 띄우기
-                            center: new naver.maps.LatLng(wid, gyd),
-                            zoom: 17,
-                            zoomControl: true, //줌 컨트롤의 표시 여부
-                            zoomControlOptions: { //줌 컨트롤의 옵션
-                                position: naver.maps.Position.TOP_RIGHT
-                            }
-                        });
+                        var loc = new naver.maps.LatLng(wid, gyd); // 누른버튼의 위도 경도
 
                         var contentString = [
                             '<div class="iw_inner">',
@@ -131,6 +126,9 @@
                         var infowindow = new naver.maps.InfoWindow({ // 정보창 띄위기
                             content: contentString
                         });
+
+                        map.setCenter(loc); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                        map.setZoom(17);
 
 
                         var marker = new naver.maps.Marker({
@@ -147,7 +145,6 @@
                                 infowindow.open(map, marker);
                             }
                         })
-
                     }
 
 
@@ -164,7 +161,7 @@
                                 <span id="name">
                                     <%= model[i].병원명 %>
                                 </span>
-                                <span id="tel"> |
+                                <span id="tel">
                                     <%= model[i].전화번호 %>
                                 </span><br>
                                 <span id="address">
@@ -181,6 +178,8 @@
                                 <span class="time">일요일
                                     <%= model[i].일요일운영시간 %>
                                 </span>
+
+
                             </div>
 
                             <!--예약 버튼 클릭 시 예약 팝업창 뜨도록-->
