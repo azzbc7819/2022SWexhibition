@@ -33,10 +33,10 @@ app.get('/hi', function(요청, 응답){
 app.get('/searchhospital', function(요청, 응답){
     //응답.sendFile(__dirname + '/search.html');
     var name = 요청.query.search;
-    var sql = `SELECT * from '병원';`;
+    var sql = `SELECT * from 병원 order by 병원명;`;
     if(typeof(name) != 'undefined'){
         //console.log(name);
-        sql = `SELECT * FROM 병원 WHERE 병원명 LIKE "%` + name + `%";`;
+        sql = `SELECT * FROM 병원 WHERE 병원명 LIKE "%` + name + `%" order by 병원명;`;
         //console.log(sql);
     }
 
@@ -57,11 +57,11 @@ app.get('/searchhospital', function(요청, 응답){
 app.get('/searchpharmacy', function(요청, 응답){
     //응답.sendFile(__dirname + '/search.html');
     var name = 요청.query.search;
-    var sql = `SELECT * from '약국';`;
+    var sql = `SELECT * from '약국' order by 업체명;`;
 
     if(typeof(name) != 'undefined'){
         //console.log(name);
-        sql = `SELECT * FROM 약국 WHERE 업체명 LIKE "%` + name + `%";`;
+        sql = `SELECT * FROM 약국 WHERE 업체명 LIKE "%` + name + `%" order by 업체명;`;
         //console.log(sql);
     }
 
@@ -79,11 +79,11 @@ app.get('/searchpharmacy', function(요청, 응답){
 app.get('/searchpcrCenter', function(요청, 응답){
     //응답.sendFile(__dirname + '/search.html');
     var name = 요청.query.search;
-    var sql = `SELECT * from '선별진료소';`;
+    var sql = `SELECT * from '선별진료소' order by 선별진료소명;`;
 
     if(typeof(name) != 'undefined'){
         //console.log(name);
-        sql = `SELECT * FROM 선별진료소 WHERE 선별진료소명 LIKE "%` + name + `%";`;
+        sql = `SELECT * FROM 선별진료소 WHERE 선별진료소명 LIKE "%` + name + `%" order by 선별진료소명;`;
         //console.log(sql);
     }
 
