@@ -286,17 +286,17 @@ main {
 
 
 /*팝업 창을 위한 css 부분*/
-/*
+
 .popup {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     box-shadow: 2px 2px 10px gray;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     text-align: right;
     padding : 20px;
 
-    position: absolute;
+    position: fixed;
     left: 50%;
     top:50%;
     transform: translate(-50%, -50%);
@@ -304,20 +304,22 @@ main {
     opacity: 0;
 
     transition: all 0.5s; /*0.5초동안 애니메이션 효과*/
-/*
-    z-index: 5;
-}/*
+
+    z-index: -5;
+}
 .popup a {
     color:gray;
     text-decoration: none;
     font-size: 1rem;
 }
-.popup:target{   /*popup이 타겟이 될 때 보여지도록*/
-    /*opacity: 1;
+.popup:target{   /*popup이 타겟이 될 때 보여지도록, 하이퍼링크로 간 영역*/
+    opacity: 1;
+    z-index: 5;
 }
 .popup:target + .dim {   /*popup이 타겟이 왔고 형제인 div(dim)를 선택했을때*/
-  /*  opacity: 1;
-    z-index: 1;
+    opacity: 1;
+    z-index: 2;
+
 }
 .dim {
     position: absolute;
@@ -327,10 +329,21 @@ main {
     bottom : 0;
     width: 100%;
     height: 100%;
+    position: fixed;
     background: rgba(0,0,0,0.6); /*팝업 뒤가 클릭되지 않도록 까맣게 배경을 칠함*/
- /*   opacity: 0; /*투명도가 0일 뿐 그 뒤의 요소가 클릭되지 않음*/
- /*   z-index: -1; /*클릭되도록 위치를 옮김*/
-/*}*/
+    opacity: 0; /*투명도가 0일 뿐 그 뒤의 요소가 클릭되지 않음*/
+    z-index: -1; /*클릭되도록 위치를 옮김*/
+}
+
+#popupform {
+    text-align: left;
+    width: 80%;
+    height: 90%;
+}
+
+.popupTableKey {
+    text-align: right;
+}
 
 
 
