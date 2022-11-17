@@ -21,7 +21,7 @@
     <title> 방구석 힐러 - 검색 페이지</title>
 </head>
 
-<body>
+<body id="mainbody">
     <!--사이트 명, 홈버튼, 로그인 페이지-->
 
     <header>
@@ -188,6 +188,20 @@
                             <!--가려질 부분 / opacity : 0-->
                             <div class="popup" id="pop1">
                                 <a href="#a">닫기</a>
+                               <div id="popupform">
+                                <form>
+                                    <table>
+                                        <tr><td class="popupTableKey">이름 :</td><td class="popupTableValue"><input type="text"></td></tr>
+                                        <tr><td class="popupTableKey">나이 :</td><td class="popupTableValue"><input type="text" placeholder="만 나이를 입력해주세요"></td></tr>
+                                        <tr><td class="popupTableKey">증상 :</td><td class="popupTableValue"><textarea cols="23" rows="10"></textarea></td></tr>
+                                        <tr><td class="popupTableKey">앓고 있는 질환 :</td><td class="popupTableValue"><input type="text"></td></tr>
+                                        <tr><td class="popupTableKey">먹고 있는 약 :</td><td class="popupTableValue"><input type="text">
+                                        <tr><td class="popupTableKey">진료 원하는 시간 :</td class="popupTableValue"><td><textarea cols="23" rows="4" placeholder="가능한 시간대를 모두 작성해주세요"></textarea>
+                                        <input type="submit" value="제출" onclick="alert('제출이 완료되었습니다');"></td></tr>
+                                    </table>
+                                </form>
+                                </div>
+
                             </div>
                             <div class="dim">
 
