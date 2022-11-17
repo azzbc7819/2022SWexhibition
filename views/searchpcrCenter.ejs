@@ -146,34 +146,23 @@
                                 </span>
                                 <span id="tel"> |
                                     <%= model[i].전화번호 %>
-                                </span><br>
+                                </span>
                                 <span id="address">
                                     <%= model[i].주소 %>
-                                </span><br>
-                                <br>
+                                </span>
 
                                 <span class="time">평일
                                     <%= model[i].평일운영시간 %>
-                                </span><br>
+                                </span>
                                 <span class="time">토요일
                                     <%= model[i].토요일운영시간 %>
-                                </span><br>
+                                </span>
                                 <span class="time">일요일
                                     <%= model[i].일요일운영시간 %>
                                 </span>
                             </div>
 
-                            <!--예약 버튼 클릭 시 예약 팝업창 뜨도록-->
-                            <a href="#pop1" class="btn"><input type="button" id="btnReserve" value="예약 하기"></a>
 
-                            <!--가려질 부분 / opacity : 0-->
-                            <div class="popup" id="pop1">
-                                <a href="#a">닫기</a>
-                            </div>
-                            <div class="dim">
-
-                            </div>
-                            <!--여기까지-->
                         </li>
                         <% } %>
                     <!--<span><input name="add" type="button" value="더보기"></span>-->

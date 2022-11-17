@@ -75,10 +75,10 @@
             <div class="arrayBlcok">
                 <select name="arrayhsp" id="arrayhsp">
                     <span>
-                        <option value="distance">가까운 순</option>
+                        <option value="distance">가나다 순</option>
                     </span>
                     <span>
-                        <option value="related">관련도 순</option>
+                        <option value="related">가까운 순</option>
                     </span>
                 </select>
                 <form>
@@ -140,18 +140,17 @@
                                 </span>
                                 <span id="tel"> |
                                     <%= model[i].전화번호 %>
-                                </span><br>
+                                </span>
                                 <span id="address">
                                     <%= model[i].주소 %>
-                                </span><br>
-                                <br>
+                                </span>
 
                                 <span class="time">평일
                                     <%= model[i].평일운영시간 %>
-                                </span><br>
+                                </span>
                                 <span class="time">토요일
                                     <%= model[i].토요일운영시간 %>
-                                </span><br>
+                                </span>
                                 <span class="time">일요일
                                     <%= model[i].일요일운영시간 %>
                                 </span>
@@ -162,6 +161,7 @@
 
                             <!--가려질 부분 / opacity : 0-->
                             <div class="popup" id="pop1">
+                                <a href="#a">닫기</a>
                                 <div id="popupform">
                                     <form>
                                         <table>
@@ -175,7 +175,6 @@
                                         </table>
                                     </form>
                                     </div>
-                                <a href="#a">닫기</a>
                             </div>
                             <div class="dim">
 
