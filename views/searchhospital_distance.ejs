@@ -8,13 +8,13 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
     <script type="text/javascript"
-        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=usxa85bak8"></script>
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=usxa85bak8&amp;submodules = geocoder"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
     <link href="search.css" type="text/css" rel="stylesheet">
 
-    <title> 방구석 힐러 - 검색</title>
+    <title> 방구석 힐러 - 검색 페이지</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                     <form>
                         <!--onClick 추가-->
                         <span><input id="logo" name="logo" type="button" value="사이트 로고"
-                                onClick="location.href='mainPG.html'" /></span>
+                                onClick="location.href='mainPG'" /></span>
                         <span><input id="login" name="login" type="button" value="login" /></span>
                     </form>
                     <br><br>
@@ -42,23 +42,23 @@
     <main>
         <section>
             <div class="ChoicebtnBlock">
-                <!--11-08 서영 : button id 변경-->
+                <!--버튼으로 변경-->
                 <button type="button" id="hospital" onclick="location.href='searchhospital'">병원</button>
-                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국 / 편의점
-                </button>
+                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국 / 편의점</button>
                 <button type="button" id="pcrCenter" onclick="location.href='searchpcrCenter'">선별진료소</button>
                 <button type="button" id="isolation" onclick="location.href='searchisolation'">격리시설</button>
             </div>
         </section>
 
         <section>
+            <form action="">
             <!-- 네이버 지도 관련 자바 스크립트 파일 불러오기 -->
             <script src="map.js"></script>
 
             <div class="mapBlock">
                 <div id="map" style="width : 100%; height:300px;"></div>
             </div>
-
+            </form>
             <!--검색 바 위치 변경 : 지도 위 -> 지도 밑으로 -->
             <div class="searchBlock">
                 <!--submit , form 변경-->
@@ -68,10 +68,8 @@
                     <!--이미지 소스 삽입  + 앵커 삽입-->
                     <a href="#map"><input id="btnSearch" name="btnSearch" type="image" src="searchICON.png"
                             alt="검색"></a>
-
                 </form>
             </div>
-
             <script>
                 function indexSubmit(){
                     $.ajax({
@@ -84,8 +82,7 @@
                             console.log(error);
                         }
                     });
-                    location.href= 'searchpharmacy_distance';
-
+                    location.href= 'searchhospital_distance';
 
                 }
 
@@ -94,13 +91,11 @@
                     sortIndex = [];
                     jsonn = [];
 
-
-
                     var sortSelect = document.getElementById("arrayhsp");
                     var selectedWay = sortSelect.options[sortSelect.selectedIndex].value;
 
                     if(selectedWay == "ganada"){
-                        location.href = "searchpharmacy";
+                        location.href = "searchhospital";
                     }else if(selectedWay == "distance"){
                         var dist = [];
 
@@ -140,19 +135,23 @@
 
             </script>
             <div class="arrayBlcok">
+                <form id="sortForm" href="">
                 <select name="arrayhsp" id="arrayhsp" onchange="sortWay()">
                     <span>
-                        <option value="ganada">가나다 순</option>
+                        <option value="ganada">가나다순</option>
                     </span>
                     <span>
-                        <option value="distance">가까운 순</option>
+                        <option value="distance" selected>가까운순</option>
                     </span>
                 </select>
+            </form>
+
                 <form>
-                    <!-- 버튼 아이디 삽입 2022 11 07 김유진 수정 -->
                     <span><input id="b1" name="location" type="button" value="현재 위치 "></span>
                 </form>
+
             </div>
+
             <div class="resBlock">
                 <script>
 
@@ -162,8 +161,7 @@
                         gyd = gyeongdo;
 
                         var loc = new naver.maps.LatLng(wid, gyd); // 누른버튼의 위도 경도
-                        map.setCenter(loc); // 얻은 좌표를 지도의 중심으로 설정합니다.
-                        map.setZoom(17);
+
                         var contentString = [
                             '<div class="iw_inner">',
                             '   <h3>' + hp + '</h3>',
@@ -173,6 +171,9 @@
                         var infowindow = new naver.maps.InfoWindow({ // 정보창 띄위기
                             content: contentString
                         });
+
+                        map.setCenter(loc); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                        map.setZoom(17);
 
 
                         var marker = new naver.maps.Marker({
@@ -191,27 +192,25 @@
                         })
 
                     }
-
-
                 </script>
-<form>
+
+                <form>
                     <ul id="reslist">
                         <% for(var i = 0; i<model.length; i++){ %>
-                        <li id=<%=model[i].id %> onclick='savewg("<%= model[i].업체명%>",<%= model[i].위도 %>,<%= model[i].경도 %>)'>
+                        <li id=<%=model[i].id %> onclick='savewg("<%= model[i].병원명%>",<%= model[i].위도 %>,<%= model[i].경도 %>)'>
                             <div>
                                 <img id="img" name="사진" alt="사진" src="">
                             </div>
                             <div class="inform">
                                 <span id="name">
-                                    <%= model[i].업체명 %>
+                                    <%= model[i].병원명 %>
                                 </span>
-                                <span id="tel"> |
+                                <span id="tel">
                                     <%= model[i].전화번호 %>
                                 </span>
                                 <span id="address">
                                     <%= model[i].주소 %>
                                 </span>
-
                                 <span class="time">평일
                                     <%= model[i].평일운영시간 %>
                                 </span>
@@ -222,29 +221,27 @@
                                     <%= model[i].일요일운영시간 %>
                                 </span>
                             </div>
-
                             <!--예약 버튼 클릭 시 예약 팝업창 뜨도록-->
                             <a href="#pop1" class="btn"><input type="button" id="btnReserve" value="예약 하기"></a>
-
                             <!--가려질 부분 / opacity : 0-->
                             <div class="popup" id="pop1">
                                 <a href="#a">닫기</a>
-                                <div id="popupform">
-                                    <form>
-                                        <table>
-                                            <tr><td>이름 :</td><td><input type="text"></td></tr>
-                                            <tr><td>나이 :</td><td><input type="text" placeholder="만 나이를 입력해주세요"></td></tr>
-                                            <tr><td>증상 :</td><td><textarea cols="23" rows="10"></textarea></td></tr>
-                                            <tr><td>필요한 약 :</td><td><input type="text"></td></tr>
-                                            <tr><td>먹고 있는 약 :</td><td><input type="text">
-                                            <tr><td>배달 원하는 시간 :</td><td><textarea cols="23" rows="4" placeholder="가능한 시간대를 모두 작성해주세요"></textarea></td></tr>
-                                        </table>
-                                        <input id="btnSub" type="submit" value="제출" onclick="alert('제출이 완료되었습니다');location.href='#a'">
-                                    </form>
-                                    </div>
+                            <div id="popupform">
+                                <form>
+                                    <table id="fTable">
+                                        <tr><td class="popupTableKey">이름 :</td><td class="popupTableValue"><input type="text"></td></tr>
+                                        <tr><td class="popupTableKey">나이 :</td><td class="popupTableValue"><input type="text" placeholder="만 나이를 입력해주세요"></td></tr>
+                                        <tr><td class="popupTableKey">증상 :</td><td class="popupTableValue"><textarea cols="23" rows="10"></textarea></td></tr>
+                                        <tr><td class="popupTableKey">앓고 있는 질환 :</td><td class="popupTableValue"><input type="text"></td></tr>
+                                        <tr><td class="popupTableKey">먹고 있는 약 :</td><td class="popupTableValue"><input type="text">
+                                        <tr><td class="popupTableKey">진료 원하는 시간 :</td class="popupTableValue"><td><textarea cols="23" rows="4" placeholder="가능한 시간대를 모두 작성해주세요"></textarea></td></tr>
+                                    </table>
+                                    <input id="btnSub" type="submit" value="제출" onclick="
+                                        alert('제출이 완료되었습니다'); location.href='#a'">
+                                </form>
+                                </div>
                             </div>
                             <div class="dim">
-
                             </div>
                             <!--여기까지-->
                         </li>

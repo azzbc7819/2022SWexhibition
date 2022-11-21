@@ -44,8 +44,7 @@
             <div class="ChoicebtnBlock">
                 <!--11-08 서영 : button id 변경-->
                 <button type="button" id="hospital" onclick="location.href='searchhospital'">병원</button>
-                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국 / 편의점
-                </button>
+                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국 / 편의점</button>
                 <button type="button" id="pcrCenter" onclick="location.href='searchpcrCenter'">선별진료소</button>
                 <button type="button" id="isolation" onclick="location.href='searchisolation'">격리시설</button>
             </div>
@@ -101,6 +100,7 @@
 
                     if(selectedWay == "ganada"){
                         location.href = "searchpharmacy";
+
                     }else if(selectedWay == "distance"){
                         var dist = [];
 
@@ -133,7 +133,6 @@
 
                     indexSubmit();
 
-
                 }
 
 
@@ -145,7 +144,7 @@
                         <option value="ganada">가나다 순</option>
                     </span>
                     <span>
-                        <option value="distance">가까운 순</option>
+                        <option value="distance" selected>가까운 순</option>
                     </span>
                 </select>
                 <form>

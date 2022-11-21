@@ -44,7 +44,7 @@
             <div class="ChoicebtnBlock">
                 <!--버튼으로 변경-->
                 <button type="button" id="hospital" onclick="location.href='searchhospital'">병원</button>
-                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국</button>
+                <button type="button" id="pharmacy" onclick="location.href='searchpharmacy'">약국 / 편의점</button>
                 <button type="button" id="pcrCenter" onclick="location.href='searchpcrCenter'">선별진료소</button>
                 <button type="button" id="isolation" onclick="location.href='searchisolation'">격리시설</button>
             </div>
@@ -70,17 +70,83 @@
                             alt="검색"></a>
                 </form>
             </div>
+            <script>
+                function indexSubmit(){
+                    $.ajax({
+                        data: {sOrt: jsonn},
+                        async:false,
+                        sucess: function(data){
+                            console.log("index submit success!!");
+                        },
+                        error: function(requrest, status, error){
+                            console.log(error);
+                        }
+                    });
+                    location.href= 'searchhospital_distance';
+
+                }
+
+                function sortWay(){
+                    var flag = true;
+                    sortIndex = [];
+                    jsonn = [];
+
+                    var sortSelect = document.getElementById("arrayhsp");
+                    var selectedWay = sortSelect.options[sortSelect.selectedIndex].value;
+
+                    if(selectedWay == "ganada"){
+                        location.href = "searchhospital";
+                    }else if(selectedWay == "distance"){
+                        var dist = [];
+
+                        <% for(var k=0; k< model.length; k++) { %>
+                            var i = <%= k %>;
+                            var wid = <%= model[k].위도 %>;
+                            var gyd = <%= model[k].경도%>;
+
+                            var Wdist = Math.abs(mePosW-wid);
+                            var Gdist = Math.abs(mePosG-gyd);
+
+                            console.log(wid, gyd);
+                            dist.push([(Wdist + Gdist) / 2, i]);
+                        <% } %>
+
+                        dist.sort();
+                        console.log(dist);
+
+                        for(var i=0;i<dist.length;i++){
+                            sortIndex[i] = dist[i][1];
+                        }
+                    }
+
+                    for(var i=0;i<dist.length;i++){
+                        jsonn.push({
+                            dist: dist[i][0],
+                            index: dist[i][1]
+                        });
+                    }
+
+                    console.log(jsonn);
+
+                    indexSubmit();
 
 
+                }
+
+
+
+            </script>
             <div class="arrayBlcok">
-                <select name="arrayhsp" id="arrayhsp">
+                <form id="sortForm" href="">
+                <select name="arrayhsp" id="arrayhsp" onchange="sortWay()">
                     <span>
-                        <option value="distance">가나다순</option>
+                        <option value="ganada">가나다순</option>
                     </span>
                     <span>
-                        <option value="related">가까운순</option>
+                        <option value="distance" >가까운순</option>
                     </span>
                 </select>
+            </form>
 
                 <form>
                     <span><input id="b1" name="location" type="button" value="현재 위치 "></span>
@@ -126,9 +192,8 @@
                                 infowindow.open(map, marker);
                             }
                         })
+
                     }
-
-
                 </script>
 
                 <form>
@@ -148,7 +213,6 @@
                                 <span id="address">
                                     <%= model[i].주소 %>
                                 </span>
-
                                 <span class="time">평일
                                     <%= model[i].평일운영시간 %>
                                 </span>
@@ -158,17 +222,13 @@
                                 <span class="time">일요일
                                     <%= model[i].일요일운영시간 %>
                                 </span>
-
-
                             </div>
-
                             <!--예약 버튼 클릭 시 예약 팝업창 뜨도록-->
                             <a href="#pop1" class="btn"><input type="button" id="btnReserve" value="예약 하기"></a>
-
                             <!--가려질 부분 / opacity : 0-->
                             <div class="popup" id="pop1">
                                 <a href="#a">닫기</a>
-                               <div id="popupform">
+                            <div id="popupform">
                                 <form>
                                     <table id="fTable">
                                         <tr><td class="popupTableKey">이름 :</td><td class="popupTableValue"><input type="text"></td></tr>
@@ -177,17 +237,13 @@
                                         <tr><td class="popupTableKey">앓고 있는 질환 :</td><td class="popupTableValue"><input type="text"></td></tr>
                                         <tr><td class="popupTableKey">먹고 있는 약 :</td><td class="popupTableValue"><input type="text">
                                         <tr><td class="popupTableKey">진료 원하는 시간 :</td class="popupTableValue"><td><textarea cols="23" rows="4" placeholder="가능한 시간대를 모두 작성해주세요"></textarea></td></tr>
-
                                     </table>
                                     <input id="btnSub" type="submit" value="제출" onclick="
                                         alert('제출이 완료되었습니다'); location.href='#a'">
                                 </form>
-
                                 </div>
-
                             </div>
                             <div class="dim">
-
                             </div>
                             <!--여기까지-->
                         </li>
