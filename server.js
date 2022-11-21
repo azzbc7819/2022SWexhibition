@@ -75,10 +75,17 @@ app.get('/searchhospital', function(요청, 응답){
 
 app.get('/searchhospital_distance', function(요청, 응답){
     var sql = `SELECT * FROM 병원 order by 정렬;`;
+    var name = 요청.query.search;
+
+    if(typeof(name) != 'undefined'){
+        //console.log(name);
+        sql = `SELECT * FROM 병원 WHERE 병원명 LIKE "%` + name + `%" order by 병원명;`;
+        //console.log(sql);
+    }
 
     db.all(sql, function(err, rows){
         rows.forEach(function (row){
-            console.log(row);
+            //console.log(row);
         });
             응답.render('searchhospital_distance',{model: rows});
     });
@@ -125,10 +132,18 @@ app.get('/searchpharmacy', function(요청, 응답){
 
 app.get('/searchpharmacy_distance', function(요청, 응답){
     var sql = `SELECT * FROM 약국 order by 정렬;`;
+    var name = 요청.query.search;
+
+    if(typeof(name) != 'undefined'){
+        //console.log(name);
+        sql = `SELECT * FROM 약국 WHERE 업체명 LIKE "%` + name + `%" order by 업체명;`;
+        //console.log(sql);
+    }
+
 
     db.all(sql, function(err, rows){
         rows.forEach(function (row){
-            console.log(row);
+            //console.log(row);
         });
             응답.render('searchpharmacy_distance',{model: rows});
     });
