@@ -8,8 +8,9 @@
 + 고은영 - 빅데이터 
 + 김유진 - 빅데이터 
 + 남서영 - 콘텐츠IT 
-![image](https://user-images.githubusercontent.com/80818761/202943188-f3da688a-a871-4a78-8910-c2bdd7fee9be.png)
 
+
+<img width="446" alt="image" src="https://user-images.githubusercontent.com/80818761/202943283-44b76a69-216b-41fd-8f7a-2360a9421a1f.png">
 
 #
 # 1. 프로젝트 개요
