@@ -86,6 +86,20 @@
 
                 }
 
+                function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) {
+                    function deg2rad(deg) {
+                        return deg * (Math.PI/180)
+                    }
+
+                    var R = 6371; // Radius of the earth in km
+                    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+                    var dLon = deg2rad(lng2-lng1);
+                    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                    var d = R * c; // Distance in km
+                    return d;
+                }
+
                 function sortWay(){
                     var flag = true;
                     sortIndex = [];
@@ -104,11 +118,13 @@
                             var wid = <%= model[k].위도 %>;
                             var gyd = <%= model[k].경도%>;
 
-                            var Wdist = Math.abs(mePosW-wid);
-                            var Gdist = Math.abs(mePosG-gyd);
+                            //var Wdist = Math.abs(mePosW-wid);
+                            //var Gdist = Math.abs(mePosG-gyd);
 
-                            console.log(wid, gyd);
-                            dist.push([(Wdist + Gdist) / 2, i]);
+                            var ddist = getDistanceFromLatLonInKm(mePosW,mePosG,wid,gyd);
+
+                            console.log(mePosW, mePosG, wid, gyd);
+                            dist.push([ddist, <%= model[k].id %>]);
                         <% } %>
 
                         dist.sort();
