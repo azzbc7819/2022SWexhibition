@@ -10,7 +10,7 @@
 + 남서영 - 콘텐츠IT 
 
 
-<img width="446" alt="image" src="https://user-images.githubusercontent.com/80818761/202943283-44b76a69-216b-41fd-8f7a-2360a9421a1f.png">
+![image](https://user-images.githubusercontent.com/80818761/203681169-8746ce24-b031-42eb-a0aa-bc425281ee63.png)
 
 #
 # 1. 프로젝트 개요
@@ -24,7 +24,7 @@
 
 
 ### 프로젝트 시나리오
-![캡스톤디자인_프로젝트 시나리오 초안-001 (1)](https://user-images.githubusercontent.com/80818761/190839309-e64ffb38-ce74-425a-97e1-94b5235579af.jpg)
+![image](https://user-images.githubusercontent.com/80818761/203681139-2c24f622-42e2-4536-801d-c2a3522c17ab.png)
 
 
 ###  개발 환경
