@@ -35,6 +35,8 @@
 - API : Naver Map 
 
 # 3. 실행화면
+![캡스톤 시연_모바일](https://github.com/azzbc7819/2022SWexhibition/assets/80818761/020ea4eb-c446-4d5e-8693-07d64ec40484)
+
 
 # 4. 웹사이트 가이드
 
@@ -46,3 +48,4 @@ https://www.figma.com/file/GkJlLj4QwXuzxYA5DVpHk0/%EC%BA%A1%EC%8A%A4%ED%86%A4-%E
 
 홈페이지 링크
 https://homecarehealer.herokuapp.com/
+헤로쿠 유료 전환으로 서버가 닫혀있는 상태 
