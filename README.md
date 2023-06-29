@@ -35,6 +35,7 @@
 - API : Naver Map 
 
 # 3. 실행화면
+![제목 없는 동영상 - Clipchamp로 제작 (2)](https://github.com/azzbc7819/2022SWexhibition/assets/80818761/c2dfe91b-a443-457e-b263-93694c8a2447)
 ![캡스톤 시연_모바일](https://github.com/azzbc7819/2022SWexhibition/assets/80818761/020ea4eb-c446-4d5e-8693-07d64ec40484)
 
 
